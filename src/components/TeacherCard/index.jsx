@@ -40,7 +40,7 @@ const TeacherCard = ({
           <p>{email}</p>
           <p>{age} years old</p>
         </div>
-        <Flex gap="middle">
+        <Flex gap="middle" style={{ marginTop: "10px" }}>
           <Tooltip placement="top" title="Edit teacher" arrow={mergedArrow}>
             <Button
               onClick={() => editTeacher(id)}

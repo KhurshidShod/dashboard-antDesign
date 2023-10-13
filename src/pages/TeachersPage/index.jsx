@@ -200,8 +200,8 @@ const TeachersPage = () => {
         justify="space-between"
         style={{ width: "100%", padding: "0 1rem", paddingBottom: "10px" }}
       >
-        <h1>Teachers</h1>
-        <Flex align="center" gap='1rem'>
+        <h1 style={{zIndex: '2'}}>Teachers</h1>
+        <Flex style={{zIndex: '2'}} align="center" gap='1rem'>
           <Input type="search" onChange={(e) => setSearch(e.target.value)} />
           <Button
             onClick={showModal}
