@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
@@ -20,14 +20,14 @@ function App() {
         <Route
           path="/"
           element={
-            isAuth ? <TeachersPage /> : <LoginPage setIsAuth={setIsAuth} />
+            !isAuth ? <LoginPage setIsAuth={setIsAuth} /> : <Navigate to='/teachers' />
           }
         />
         <Route path="" element={<LoginPage setIsAuth={setIsAuth} />} />
         {isAuth && (
           <Route element={<LayoutComponent />}>
             <Route path="/students" element={<StudentsPage />} />
-            <Route path="/" element={<TeachersPage />} />
+            <Route path="/teachers" element={<TeachersPage />} />
           </Route>
         )}
       </Routes>

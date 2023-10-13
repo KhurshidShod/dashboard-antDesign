@@ -7,6 +7,7 @@ const StudentsPage = () => {
   const [students, setStudents] = useState(null);
   const [teachers, setTeachers] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('')
   const [teacherId, setTeacherId] = useState("all");
   const [teacherSelect, setTeacherSelect] = useState([
     { value: "all", label: "All" },
@@ -74,6 +75,12 @@ const StudentsPage = () => {
       title: "Fullname",
       dataIndex: "fullName",
       key: "fullName",
+      filteredValue: [search],
+      onFilter: (value, record) => {
+        return (
+          record.fullName.toLowerCase().includes(value)
+        )
+      }
     },
     {
       title: "Age",
@@ -105,7 +112,7 @@ const StudentsPage = () => {
       <div className={styles.students__header}>
         <h1>Students</h1>
         <Space>
-          <Input placeholder="Search" style={{ width: 300 }} />
+          <Input onChange={(e) => setSearch(e.target.value)} placeholder="Search" style={{ width: 300 }} />
           <Select
             onChange={(e) => {
               setTeacherId(e);

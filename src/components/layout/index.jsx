@@ -1,22 +1,20 @@
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from "@ant-design/icons";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { PiStudentBold } from "react-icons/pi";
-import { FaUniversity } from 'react-icons/fa'
+import { FaUniversity } from "react-icons/fa";
 import { Layout, Menu, Button, theme } from "antd";
 const { Header, Sider, Content } = Layout;
 
 const LayoutComponent = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation()
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Layout style={{ height: "100vh" }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider collapsible collapsed={collapsed}>
         <div
           style={{
             width: "100%",
@@ -38,17 +36,25 @@ const LayoutComponent = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[location.pathname]}
           style={{ marginTop: "1rem" }}
           items={[
             {
-              key: "1",
-              icon: <Link to='/teachers'><FaUniversity /></Link>,
+              key: "/teachers",
+              icon: (
+                <Link to="/teachers">
+                  <FaUniversity />
+                </Link>
+              ),
               label: "Teachers",
             },
             {
-              key: "2",
-              icon: <Link to='/students'><PiStudentBold /></Link>,
+              key: "/students",
+              icon: (
+                <Link to="/students">
+                  <PiStudentBold />
+                </Link>
+              ),
               label: "Students",
             },
           ]}
@@ -78,7 +84,7 @@ const LayoutComponent = () => {
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
-            overflowY: 'auto'
+            overflowY: "auto",
           }}
         >
           <Outlet />
