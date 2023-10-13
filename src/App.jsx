@@ -19,14 +19,15 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isAuth ? <TeachersPage /> : <LoginPage setIsAuth={setIsAuth} />}
+          element={
+            isAuth ? <TeachersPage /> : <LoginPage setIsAuth={setIsAuth} />
+          }
         />
         <Route path="" element={<LoginPage setIsAuth={setIsAuth} />} />
         {isAuth && (
           <Route element={<LayoutComponent />}>
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/students" element={<StudentsPage />} />
-            <Route path="/teachers" element={<TeachersPage />} />
+            <Route path="/" element={<TeachersPage />} />
           </Route>
         )}
       </Routes>
